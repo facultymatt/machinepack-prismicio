@@ -5,6 +5,10 @@
   "scripts": {
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facultymatt/machinepack-prismicio.git"
+  },
   "keywords": [
     "Prismicio",
     "machines",
