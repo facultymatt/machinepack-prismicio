@@ -1,0 +1,32 @@
+{
+  "name": "machinepack-prismicio",
+  "version": "0.1.0",
+  "description": "Work with prismicio.",
+  "scripts": {
+    "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
+  },
+  "keywords": [
+    "Prismicio",
+    "machines",
+    "machinepack"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "machine": "^3.0.0",
+    "prismic.io": "^1.1.4"
+  },
+  "devDependencies": {
+    "test-machinepack-mocha": "^0.2.2"
+  },
+  "machinepack": {
+    "friendlyName": "Prismicio",
+    "machineDir": "machines/",
+    "machines": [
+      "get-document",
+      "get-document-by-slug",
+      "get-many-documents",
+      "get-bookmark"
+    ]
+  }
+}
