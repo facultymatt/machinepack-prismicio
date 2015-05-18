@@ -33,6 +33,11 @@ module.exports = {
       example: 'VUYf7y0AAJkBHcVj',
       description: 'Control which versions of documents we can access. Defaults to master which is all live documents.',
       required: false
+    },
+    html: {
+      example: true,
+      description: 'Return document as html?',
+      required: false
     }
   },
 
@@ -52,8 +57,7 @@ module.exports = {
       description: 'Not authorized'
     },
     success: {
-      description: 'Document object',
-      example: {}
+      description: 'Document object or html depending on inputs.'
     }
   },
 
@@ -69,7 +73,7 @@ module.exports = {
     Prismic.Api(inputs.apiEndpoint, function(err, Api) {
       if (err && err.toString().indexOf('401') !== -1) {
         return exits.notAuthorized(err);
-      } else if(err) {
+      } else if (err) {
         return exits.error(err);
       }
       var ctx = {
@@ -89,7 +93,11 @@ module.exports = {
           if (err) {
             exits.error(err);
           } else if (doc && (!inputs.slug || doc.slug == inputs.slug)) {
-            exits.success(doc);
+            if (inputs.html) {
+              exits.success(doc.asHtml(ctx.linkResolver));
+            } else {
+              exits.success(doc);
+            }
           } else if (doc && doc.slugs.indexOf(inputs.slug) > -1 && exits.newSlug) {
             exits.newSlug(doc);
           } else {
